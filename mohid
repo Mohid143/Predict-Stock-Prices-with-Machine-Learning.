@@ -1,0 +1,24 @@
+import numpy as np
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split
+
+# Load the Boston Housing dataset
+dataset = pd.read_csv('boston_housing.csv')
+
+# Split the dataset into the training set and test set
+X_train, X_test, y_train, y_test = train_test_split(dataset, test_size=0.2)
+
+# Create a decision tree regressor
+regressor = DecisionTreeRegressor()
+
+# Fit the regressor to the training set
+regressor.fit(X_train, y_train)
+
+# Predict the values of the test set
+y_pred = regressor.predict(X_test)
+
+# Calculate the mean squared error
+mse = np.mean((y_pred - y_test)**2)
+
+print('Mean squared error:', mse)
